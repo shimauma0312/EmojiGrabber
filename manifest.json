@@ -12,5 +12,15 @@
                 "./script/github_modal.js"
             ]
         }
-    ]
+    ],
+    "permissions": [
+        "activeTab",
+        "scripting",
+        "storage"
+    ],
+    "options_page": "./view/option.html",
+    "action": {
+        "default_icon": "./img/icon.png",
+        "default_popup": "./view/option.html"
+    }
 }
