@@ -1,0 +1,16 @@
+{
+    "name": "github emoji guide",
+    "version": "1.0.0",
+    "manifest_version": 3,
+    "description": "Sample Chrome Extension",
+    "content_scripts": [
+        {
+            "matches": [
+                "https://github.com/shimauma0312"
+            ],
+            "js": [
+                "./script/github_modal.js"
+            ]
+        }
+    ]
+}
