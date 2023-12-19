@@ -38,7 +38,7 @@ function displayEmoji(data) {
         emojiImage.src = url;
         emojiImage.alt = name;
         emojiImage.title = name;
-        const emojiName = dcument.createElement("span");
+        const emojiName = document.createElement("span");
         emojiName.textContent = name;
         const emojiElement = document.createElement("li");
         emojiElement.appendChild(emojiImage);
