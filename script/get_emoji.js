@@ -1,5 +1,6 @@
+/*
+*/
 const url = "https://api.github.com/emojis";
-const emojiList = document.getElementById("emoji_list");
 
 async function getEmoji() {
     try {
@@ -12,6 +13,7 @@ async function getEmoji() {
 }
 
 function displayEmoji(data) {
+    const emojiList = document.getElementById("emoji_list");
     for (const [name, url] of Object.entries(data)) {
         const emojiImage = document.createElement("img");
         emojiImage.src = url;
@@ -26,4 +28,4 @@ function displayEmoji(data) {
     }
 }
 
-getEmoji();
+document.addEventListener("DOMContentLoaded", getEmoji);
