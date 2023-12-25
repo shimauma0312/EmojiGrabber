@@ -13,12 +13,19 @@ async function getEmoji() {
 function displayEmoji(data) {
     const emojiList = document.getElementById("emoji_list");
     if (!emojiList)
-        return; // Element not found
+        return;
     for (const [name, url] of Object.entries(data)) {
         const emojiImage = document.createElement("img");
         emojiImage.src = url;
         emojiImage.alt = name;
-        emojiImage.setAttribute("data-emoji-name", name);
+
+        //TODO リテラルのみ引き出す正規表現修正
+        const strippedUrl = url.replace(/.*\/unicode\//, "").replace(/\.png\?v8/, "");
+        // const match = strippedUrl.match(/unicode\/([0-9a-f]+)\.png/);
+        // const unicode = match[1];
+        console.log(strippedUrl);  // "/unicode/"と".png"の間の文字列を出力
+        emojiImage.setAttribute("data-emoji-name", strippedUrl);
+
         emojiImage.addEventListener("click", copy_name);
         const emojiName = document.createElement("span");
         emojiName.textContent = name;
@@ -29,15 +36,14 @@ function displayEmoji(data) {
     }
 }
 async function copy_name() {
-    const emojiName = this.getAttribute("data-emoji-name");
-    if (!emojiName)
-        return;
+    const emojiName = String.fromCodePoint(parseInt(this.getAttribute("data-emoji-name"),16));
+    if (!emojiName) return;
     try {
         await navigator.clipboard.writeText(emojiName);
         console.log(`Copied ${emojiName} to clipboard`);
-    }
-    catch (error) {
+    } catch (error) {
         console.error('Failed to copy text: ', error);
     }
 }
+
 document.addEventListener("DOMContentLoaded", getEmoji);
