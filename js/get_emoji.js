@@ -36,7 +36,7 @@ function displayEmoji(data) {
     }
 }
 async function copy_name() {
-    const emojiName = this.getAttribute("data-emoji-name");
+    const emojiName = String.fromCodePoint(parseInt(this.getAttribute("data-emoji-name"),16));
     if (!emojiName) return;
     try {
         await navigator.clipboard.writeText(emojiName);
