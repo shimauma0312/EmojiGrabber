@@ -8,6 +8,11 @@ document.addEventListener('DOMContentLoaded', function () {
         // inputタグ内の文字列がからでなければ、emoji_searchを実行する
         if (this.value.trim() !== '') {
             emoji_search();
+        } else {
+            console.log("searchInput is empty");
+            chrome.storage.local.get("json", function(data) {
+                displayEmoji(Object.entries(data.json));
+            });
         }
     });
 
