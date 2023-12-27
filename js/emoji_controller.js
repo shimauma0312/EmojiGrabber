@@ -2,10 +2,16 @@ export async function getEmoji() {
     const url = "https://api.github.com/emojis";
     const response = await fetch(url);
     const data = await response.json();
+    chrome.storage.local.set({"json": data });
+
     return data;
 }
 
 export async function copy_name(data_emoji_name) {
+    if (typeof data_emoji_name !== 'string') {
+        console.error('data_emoji_name is not a string:', data_emoji_name);
+        return;
+    }
     const emojiName = String.fromCodePoint(parseInt(extraction(data_emoji_name), 16));
     if (!emojiName) return;
     try {
