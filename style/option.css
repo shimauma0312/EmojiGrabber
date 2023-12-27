@@ -13,22 +13,21 @@ li {
     width: 100%;
     height: 100%;
     overflow-y: scroll;
-    padding: 10px;
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: center;
 }
 
-#emoji_contents {
-    width: 60%;
-    height: 60%;
+#emoji_img {
+    width: 30px;
+    height: 30px;
 }
 
+#emoji_element {
+    margin: 0.1rem;
+}
 .flex {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex_start;
     flex-wrap: wrap;
-
-}
-
-#emoji_contents {
-    /*画像サイズ*/
-    
 }

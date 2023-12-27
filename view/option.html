@@ -6,11 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../style/option.css">
+
+    <script src="../js/searchHandler.js"></script>
 </head>
 
 <body>
+    <input type="text" id="searchInput" placeholder="Search...">
+    <!--uiタグで検索結果をinputタグ下に表示させる-->
+    <ui role="listbox" id="list_box"></ui>
+    <div id="searchResults"></div>
     <div id="emoji_list" class="emoji_list flex"></div>
-    <script src="../js/get_emoji.js"></script>
+    <script type="module" src="../js/get_emoji.js"></script>
 </body>
 
 </html>
