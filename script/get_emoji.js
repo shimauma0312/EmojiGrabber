@@ -16,6 +16,7 @@ function displayEmoji(data) {
     const emojiList = document.getElementById("emoji_list");
     for (const [name, url] of Object.entries(data)) {
         const emojiImage = document.createElement("img");
+        emojiImage.id = "emoji_contents";
         emojiImage.src = url;
         emojiImage.alt = name;
         emojiImage.title = name;
