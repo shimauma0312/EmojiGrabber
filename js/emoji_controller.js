@@ -1,0 +1,21 @@
+export async function getEmoji() {
+    const url = "https://api.github.com/emojis";
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+}
+
+export async function copy_name(data_emoji_name) {
+    const emojiName = String.fromCodePoint(parseInt(extraction(data_emoji_name), 16));
+    if (!emojiName) return;
+    try {
+        await navigator.clipboard.writeText(emojiName);
+        console.log(`Copied ${emojiName} to clipboard`);
+    } catch (error) {
+        console.error('Failed to copy text: ', error);
+    }
+}
+
+function extraction(url) {
+     return url.replace(/.*\/unicode\//, "").replace(/\.png\?v8/, "");
+}
