@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
 async function emoji_search() {
     const searchWord = searchInput.value;
     chrome.storage.local.get("json", function(data) {
-        let true_list = [[]];
+        let true_list = [];
         for (const [name, url] of Object.entries(data.json)) {
             /*nameとsearchWordを部分一致で比較し、合致すればリストにaddする */
             if (name.indexOf(searchWord) != -1) {
