@@ -1,48 +1,36 @@
-"use strict";
+/*
+*/
 const url = "https://api.github.com/emojis";
+
 async function getEmoji() {
     try {
         const response = await fetch(url);
         const data = await response.json();
         displayEmoji(data);
-    }
-    catch (error) {
+    } catch (error) {
         console.error(error);
     }
 }
+
 function displayEmoji(data) {
     const emojiList = document.getElementById("emoji_list");
-    if (!emojiList)
-        return;
     for (const [name, url] of Object.entries(data)) {
+        /* img */
         const emojiImage = document.createElement("img");
+        emojiImage.id = "emoji_contents";
         emojiImage.src = url;
         emojiImage.alt = name;
-
-        //TODO リテラルのみ引き出す正規表現修正
-        const strippedUrl = url.replace(/.*\/unicode\//, "").replace(/\.png\?v8/, "");
-        // const match = strippedUrl.match(/unicode\/([0-9a-f]+)\.png/);
-        // const unicode = match[1];
-        console.log(strippedUrl);  // "/unicode/"と".png"の間の文字列を出力
-        emojiImage.setAttribute("data-emoji-name", strippedUrl);
-
-        emojiImage.addEventListener("click", copy_name);
+        emojiImage.title = name;
+        emojiImage.class = "flex"
+        /* span */
         const emojiName = document.createElement("span");
         emojiName.textContent = name;
+
+        /* imgとnameを統合 */
         const emojiElement = document.createElement("li");
         emojiElement.appendChild(emojiImage);
         emojiElement.appendChild(emojiName);
         emojiList.appendChild(emojiElement);
-    }
-}
-async function copy_name() {
-    const emojiName = String.fromCodePoint(parseInt(this.getAttribute("data-emoji-name"),16));
-    if (!emojiName) return;
-    try {
-        await navigator.clipboard.writeText(emojiName);
-        console.log(`Copied ${emojiName} to clipboard`);
-    } catch (error) {
-        console.error('Failed to copy text: ', error);
     }
 }
 
