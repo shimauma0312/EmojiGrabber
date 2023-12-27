@@ -7,15 +7,14 @@
     <title>Document</title>
     <link rel="stylesheet" href="../style/option.css">
 
-    <script src="../js/searchHandler.js"></script>
+    <script type="module" src="../js/searchHandler.js"></script>
 </head>
 
 <body>
     <div class="position_left">
-        <p class = "font_size_1 maegin_right_1 none_margin">Search by shortcode:</p>
+        <p class = "font_size_1 none_margin">Search by shortcode :</p>
         <input type="text" id="searchInput" placeholder="Search...">
         <!--uiタグで検索結果をinputタグ下に表示させる-->
-        <ui role="listbox" id="list_box"></ui>
     </div>
     <div id="searchResults" class="center"></div>
     <div id="emoji_list" class="flex emoji_list_scrollbar"></div>

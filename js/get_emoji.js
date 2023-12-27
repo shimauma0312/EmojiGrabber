@@ -29,7 +29,7 @@ function displayEmoji(data) {
         emojiList.appendChild(emojiElement);
 
         //クリックイベント
-        emojiImage.addEventListener("click", () => copy_name(copy_name(emojiImage.getAttribute("data_emoji_name"))));
+        emojiImage.addEventListener("click", () => copy_name(String(emojiImage.getAttribute("data_emoji_name"))));
         // emojiImage.addEventListener("click", copy_name(emojiImage.getAttribute("data_emoji_name")));
     }
 }
