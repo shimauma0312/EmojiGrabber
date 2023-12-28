@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>EmojiGrabber</title>
     <link rel="stylesheet" href="../style/option.css">
     <link rel="stylesheet" href="../style/copy_text.css">
 
@@ -13,13 +13,16 @@
 </head>
 
 <body>
-    <div class="position_left">
-        <p class = "font_size_1 none_margin">Search by shortcode :</p>
+    <header class="position_left ">
+        <h1 id="EmojiGrabber" class="font_size_2 bothEnds_padding">EmojiGrabber 🤐🤪🥴</h1>
+    </header>
+    <div class="position_left margin_top_1 ">
+        <p class = "font_size_1 none_margin bothEnds_padding">Search by shortcode :</p>
         <input type="text" id="searchInput" placeholder="Search...">
         <!--uiタグで検索結果をinputタグ下に表示させる-->
     </div>
     <div id="searchResults" class="center"></div>
-    <div id="emoji_list" class="flex emoji_list_scrollbar"></div>
+    <div id="emoji_list" class="flex emoji_list_scrollbar margin_top_1 "></div>
     <script type="module" src="../js/get_emoji.js"></script>
 </body>
 
