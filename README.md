@@ -1,9 +1,6 @@
 ![Alt text](readmeImg.png)
 
 You can quickly copy and paste emojis.
-
-## Features
-
 I created this Chrome extension as a trial because I had never made one before. Pull requests are welcome.
 Let's communicate with emojis and have fun together.
 
