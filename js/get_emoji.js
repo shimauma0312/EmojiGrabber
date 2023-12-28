@@ -6,6 +6,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     displayEmoji(emoji_data);
 });
 
+/**
+ * emoji_listに絵文字を表示する
+ * @param {*} data
+ */
 function displayEmoji(data) {
     const emojiList = document.getElementById("emoji_list");
     if (!emojiList)
@@ -26,14 +30,12 @@ function displayEmoji(data) {
         emojiElement.class = "flex";
 
         emojiElement.appendChild(emojiImage);
-        // emojiElement.appendChild(emojiName);
         emojiList.appendChild(emojiElement);
 
         //クリックイベント
         emojiImage.addEventListener("click", (event) => {
             copy_name(String(emojiImage.getAttribute("data_emoji_name")));
             showCopyTooltip(event);
-    });
-        // emojiImage.addEventListener("click", copy_name(emojiImage.getAttribute("data_emoji_name")));
+        });
     }
 }
