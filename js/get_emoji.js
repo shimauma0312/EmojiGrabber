@@ -1,5 +1,6 @@
 import { getEmoji } from "./emoji_controller.js";
 import { copy_name } from "./emoji_controller.js";
+import { showCopyTooltip } from "./mouse_event.js";
 document.addEventListener("DOMContentLoaded", async function () {
     const emoji_data = await getEmoji();
     displayEmoji(emoji_data);
@@ -29,7 +30,10 @@ function displayEmoji(data) {
         emojiList.appendChild(emojiElement);
 
         //クリックイベント
-        emojiImage.addEventListener("click", () => copy_name(String(emojiImage.getAttribute("data_emoji_name"))));
+        emojiImage.addEventListener("click", (event) => {
+            copy_name(String(emojiImage.getAttribute("data_emoji_name")));
+            showCopyTooltip(event);
+    });
         // emojiImage.addEventListener("click", copy_name(emojiImage.getAttribute("data_emoji_name")));
     }
 }
