@@ -74,6 +74,5 @@ function displayEmoji(data) {
 
         //クリックイベント
         emojiImage.addEventListener("click", () => copy_name(String(emojiImage.getAttribute("data_emoji_name"))));
-        // emojiImage.addEventListener("click", copy_name(emojiImage.getAttribute("data_emoji_name")));
     }
 }
