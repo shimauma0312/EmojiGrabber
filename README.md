@@ -1,4 +1,4 @@
-![Alt text](image.png)
+![Alt text](readmeImg.png)
 
 You can quickly copy and paste emojis.
 
