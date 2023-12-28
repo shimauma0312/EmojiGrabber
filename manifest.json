@@ -2,7 +2,7 @@
     "name": "github emoji guide",
     "version": "1.0.0",
     "manifest_version": 3,
-    "description": "Sample Chrome Extension",
+    "description": "quickly copy and paste emoji",
     "permissions": [
         "activeTab",
         "scripting",
