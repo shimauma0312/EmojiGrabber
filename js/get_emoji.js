@@ -1,5 +1,4 @@
-import { getEmoji } from "./emoji_controller.js";
-import { copy_name } from "./emoji_controller.js";
+import { copy_name, getEmoji } from "./emoji_controller.js";
 import { showCopyTooltip } from "./mouse_event.js";
 document.addEventListener("DOMContentLoaded", async function () {
     const emoji_data = await getEmoji();
@@ -19,7 +18,7 @@ function displayEmoji(data) {
         emojiImage.id = "emoji_img";
         emojiImage.src = url;
         emojiImage.alt = name;
-        //TODO リテラルのみ引き出す正規表現修正
+        //TODO リテラルのみ引き出す正規表現修正 
         emojiImage.setAttribute("data_emoji_name", url);
 
         /* element統合 */
@@ -29,8 +28,7 @@ function displayEmoji(data) {
         emojiElement.name = name;
         emojiElement.class = "flex";
 
-        emojiElement.appendChild(emojiImage);
-        emojiList.appendChild(emojiElement);
+        emojiList.appendChild(emojiElement.appendChild(emojiImage));
 
         //クリックイベント
         emojiImage.addEventListener("click", (event) => {
