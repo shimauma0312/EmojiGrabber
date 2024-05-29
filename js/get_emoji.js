@@ -38,7 +38,7 @@ function displayEmoji(data, elementId, isBookmarkElemets) {
         //クリックイベント
         emojiImage.addEventListener("click", (event) => {
             copy_name(String(emojiImage.getAttribute("data_emoji_name")));
-            showTooltip(event);
+            showTooltip(event, "Copied!", false);
         });
 
         // コピー
@@ -47,14 +47,14 @@ function displayEmoji(data, elementId, isBookmarkElemets) {
             bookmarkEmoji({
                 name: String(emojiImage.getAttribute("data_emoji_name")),
                 url: String(emojiImage.getAttribute("src"))
-              });        
+            });
             displayBookmarks();
         });
 
         // ブックマークのツールチップを表示
         emojiImage.addEventListener("mouseover", (event) => {
             if (!isBookmarkElemets) return;
-            showTooltip(event,isBookmarkElemets)
+            showTooltip(event, "Right click to remove from bookmarks",isBookmarkElemets)
         });
 
     }
@@ -63,7 +63,7 @@ function displayEmoji(data, elementId, isBookmarkElemets) {
 function displayBookmarks() {
     const bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
     console.log("ブックマーク：" + bookmarks);
-    if (bookmarks){
+    if (bookmarks) {
         displayEmoji(bookmarks, "bookmark_list", true);
     }
 

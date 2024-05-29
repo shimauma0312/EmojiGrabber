@@ -1,7 +1,7 @@
-export async function showTooltip(event ,isBookmarkElemets) {
+export async function showTooltip(event, msg, isBookmarkElemets) {
     let tooltip = document.createElement('div');
     tooltip.className = 'copy-tooltip';
-    tooltip.textContent = 'Copied!';
+    tooltip.textContent = msg;
     document.body.appendChild(tooltip);
 
     // ツールチップをマウスの位置に配置
