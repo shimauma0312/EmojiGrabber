@@ -1,9 +1,9 @@
 import { bookmarkEmoji, copy_name, getEmoji } from "./emoji_controller.js";
-import { showCopyTooltip } from "./mouse_event.js";
+import { showTooltip } from "./mouse_event.js";
 document.addEventListener("DOMContentLoaded", async function () {
     const emoji_data = await getEmoji();
     displayBookmarks();
-    displayEmoji(emoji_data, "emoji_list");
+    displayEmoji(emoji_data, "emoji_list", false);
 });
 
 /**
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", async function () {
  * @param {*} elementId
  * 
  */
-function displayEmoji(data, elementId) {
+function displayEmoji(data, elementId, isBookmarkElemets) {
     const emojiList = document.getElementById(elementId);
     // emojilistのhtmlをクリアする
     emojiList.innerHTML = "";
@@ -38,7 +38,7 @@ function displayEmoji(data, elementId) {
         //クリックイベント
         emojiImage.addEventListener("click", (event) => {
             copy_name(String(emojiImage.getAttribute("data_emoji_name")));
-            showCopyTooltip(event);
+            showTooltip(event, "Copied!", false);
         });
 
         // コピー
@@ -47,16 +47,24 @@ function displayEmoji(data, elementId) {
             bookmarkEmoji({
                 name: String(emojiImage.getAttribute("data_emoji_name")),
                 url: String(emojiImage.getAttribute("src"))
-              });        
+            });
             displayBookmarks();
         });
+
+        // ブックマークのツールチップを表示
+        emojiImage.addEventListener("mouseover", (event) => {
+            if (!isBookmarkElemets) return;
+            showTooltip(event, "Right click to remove from bookmarks",isBookmarkElemets)
+        });
+
     }
 }
 
 function displayBookmarks() {
     const bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
     console.log("ブックマーク：" + bookmarks);
-    if (bookmarks){
-        displayEmoji(bookmarks, "bookmark_list");
+    if (bookmarks) {
+        displayEmoji(bookmarks, "bookmark_list", true);
     }
+
 }
