@@ -40,11 +40,26 @@ function extraction(url) {
     return url.replace(/.*\/unicode\//, "").replace(/\.png\?v8/, "");
 }
 
-export function bookmarkEmoji(emoji) {
+export function bookmarkEmoji(data_emoji_name) {
+    // emojiがオブジェクトでない場合はエラーを出力して終了
+    if (typeof data_emoji_name !== 'object') {
+        console.error('emoji is not an object:', data_emoji_name);
+        return;
+    }
+    // emojiからnameとurlを取り出す
+    const { name, url } = data_emoji_name;
     let bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
     if (!bookmarks) {
         bookmarks = [];
     }
-    bookmarks.push(emojiName);
+    // 同じ絵文字がすでにブックマークされている場合は何もしない
+    if (bookmarks.some(([n, u]) => n === name && u === url)) {
+        return;
+    }
+    bookmarks.push([name, url]);
+    // bookmarks配列の要素数が10を超えていた場合、10以下になるまで先頭の要素を削除
+    while (bookmarks.length > 10) {
+        bookmarks.shift();
+    }
     localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
 }

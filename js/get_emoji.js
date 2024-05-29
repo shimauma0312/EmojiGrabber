@@ -2,16 +2,20 @@ import { bookmarkEmoji, copy_name, getEmoji } from "./emoji_controller.js";
 import { showCopyTooltip } from "./mouse_event.js";
 document.addEventListener("DOMContentLoaded", async function () {
     const emoji_data = await getEmoji();
-    displayEmoji(emoji_data);
     displayBookmarks();
+    displayEmoji(emoji_data, "emoji_list");
 });
 
 /**
  * emoji_listに絵文字を表示する
  * @param {*} data
+ * @param {*} elementId
+ * 
  */
-function displayEmoji(data) {
-    const emojiList = document.getElementById("emoji_list");
+function displayEmoji(data, elementId) {
+    const emojiList = document.getElementById(elementId);
+    // emojilistのhtmlをクリアする
+    emojiList.innerHTML = "";
     if (!emojiList)
         return;
     for (const [name, url] of Object.entries(data)) {
@@ -40,31 +44,19 @@ function displayEmoji(data) {
         // コピー
         emojiImage.addEventListener("contextmenu", (event) => {
             event.preventDefault();
-            bookmarkEmoji(String(emojiImage.getAttribute("data_emoji_name")));
+            bookmarkEmoji({
+                name: String(emojiImage.getAttribute("data_emoji_name")),
+                url: String(emojiImage.getAttribute("src"))
+              });        
+            displayBookmarks();
         });
     }
 }
 
 function displayBookmarks() {
     const bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
-    if (!bookmarks)
-        return;
-    const bookmarkList = document.getElementById("bookmark_list");
-    for (const name of bookmarks) {
-        const emojiElement = document.createElement("li");
-        emojiElement.id = "emoji_element";
-        emojiElement.name = name;
-        emojiElement.class = "flex";
-        const emojiImage = document.createElement("img");
-        emojiImage.id = "emoji_img";
-        emojiImage.src = `https://github.githubassets.com/images/icons/emoji/unicode/${name}.png?v8`;
-        emojiImage.alt = name;
-        emojiImage.setAttribute("data_emoji_name", name);
-        bookmarkList.appendChild(emojiElement.appendChild(emojiImage));
-
-        emojiImage.addEventListener("click", (event) => {
-            copy_name(String(emojiImage.getAttribute("data_emoji_name")));
-            showCopyTooltip(event);
-        });
+    console.log("ブックマーク：" + bookmarks);
+    if (bookmarks){
+        displayEmoji(bookmarks, "bookmark_list");
     }
 }

@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             console.log("searchInput is empty");
             chrome.storage.local.get("json", function(data) {
-                displayEmoji(Object.entries(data.json));
+                displayEmoji(Object.entries(data.json), "emoji_list");
             });
         }
     });
@@ -38,7 +38,7 @@ async function emoji_search() {
                 // 合致しない場合は何もしない
             }
         }
-        displayEmoji(true_list);
+        displayEmoji(true_list, "emoji_list");
     });
 }
 
@@ -58,9 +58,9 @@ function clearList() {
  * emoji_listに絵文字を表示する
  * @param {Array} data 絵文字の名前,URLの配列
  */
-function displayEmoji(data) {
+function displayEmoji(data, elementId) {
     clearList();
-    const emojiList = document.getElementById("emoji_list");
+    const emojiList = document.getElementById(elementId);
     for (const [name, url] of data) {
         const emojiImage = document.createElement("img");
         emojiImage.id = "emoji_img";
