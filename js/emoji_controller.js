@@ -5,7 +5,7 @@ export async function getEmoji() {
     const response = await fetch(url);
     const data = await response.json();
     // 取得したデータをローカルストレージに保存
-    chrome.storage.local.set({"json": data });
+    chrome.storage.local.set({ "json": data });
 
     return data;
 }
@@ -38,4 +38,13 @@ export async function copy_name(data_emoji_name) {
 function extraction(url) {
     // URLから絵文字名を抽出
     return url.replace(/.*\/unicode\//, "").replace(/\.png\?v8/, "");
+}
+
+export function bookmarkEmoji(emoji) {
+    let bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
+    if (!bookmarks) {
+        bookmarks = [];
+    }
+    bookmarks.push(emojiName);
+    localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
 }
