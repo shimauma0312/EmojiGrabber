@@ -5,7 +5,7 @@ export async function getEmoji() {
     const response = await fetch(url);
     const data = await response.json();
     // 取得したデータをローカルストレージに保存
-    chrome.storage.local.set({ "json": data });
+    // chrome.storage.local.set({ "json": data });
 
     return data;
 }

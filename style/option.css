@@ -4,34 +4,35 @@ html,
 body {
     font-family: 'Itim', cursive;
     width: 400px;
-    height: 100%;
-    background-color: #e8f1f5;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+    height: 500px;
+    background-color: #ffffff;
     padding-bottom: 0.4rem;
+    margin: 0;
+    
 }
 
 body::-webkit-scrollbar {
     width: 0;
     /* スクロールバーの幅を0に設定 */
 }
+
 header {
     width: 100%;
     height: 60px;
-    background-color: #d5e1e9;
+    background-color: #ffba9f;
 }
-
 
 li {
     list-style-type: none;
 }
 
 #emoji_list {
-    width: 100%;
-    height: 100%;
-    user-select: none;
+    display: flex;
+    flex-wrap: wrap;
+    /*gap*/
+    gap: 0.5rem;
+    height: 450px;
+    margin: 3px;
 }
 .margin_top_1 {
     margin-top: 0.5rem;
@@ -43,7 +44,8 @@ li {
 }
 
 .emoji_list_scrollbar {
-    overflow-y: auto;
+    /*スクロールバー*/
+    overflow-y: scroll;
 }
 
 /*スクロールバー*/
@@ -62,20 +64,13 @@ li {
 }
 
 #emoji_img {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
 }
 
 #emoji_element {
     margin: 0.1rem;
     cursor: pointer;
-}
-
-.flex {
-    display: flex;
-    justify-content: flex_start;
-    flex-wrap: wrap;
-    align-content: flex-start;
 }
 
 .position_left {
